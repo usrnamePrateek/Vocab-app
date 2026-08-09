@@ -193,13 +193,6 @@ export function createApp() {
           .json({ error: 'No current word to save. Get a new word and try again.' })
       }
 
-      const wordLower = source.word.toLowerCase()
-      if (!userSentence.toLowerCase().includes(wordLower)) {
-        return res.status(400).json({
-          error: `Your sentence must include the word "${source.word}".`,
-        })
-      }
-
       const entry = {
         ...source,
         userSentence: userSentence.trim(),
