@@ -118,6 +118,9 @@ function App() {
         {showHistory ? (
           <section className="history" aria-label="Saved words">
             <h1 className="section-title">Your words</h1>
+            <p className="section-copy">
+              Saved in MongoDB so they sync across devices.
+            </p>
             {saved.length === 0 ? (
               <p className="empty">No words saved yet. Practice one first.</p>
             ) : (
