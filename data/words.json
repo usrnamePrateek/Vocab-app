@@ -1,26 +1,13 @@
 {
   "currentWord": {
-    "word": "shaped",
-    "phonetic": "/ʃeɪpt/",
-    "partOfSpeech": "verb",
-    "meaning": "To create or make.",
-    "example": "Earth was shapen by God for God's folk.",
-    "id": "98a22117-78ce-4e51-bca6-1394393206ec",
+    "word": "timidly",
+    "phonetic": "",
+    "partOfSpeech": "adverb",
+    "meaning": "In a timid manner.",
+    "example": "She used the word \"timidly\" carefully in her essay.",
+    "id": "19f232f8-7948-4684-94cc-0d93ab773e4e",
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-09T18:45:16.505Z"
+    "fetchedAt": "2026-08-09T19:05:07.844Z"
   },
-  "saved": [
-    {
-      "word": "tranquil",
-      "phonetic": "/ˈtɹæŋ.kwɪl/",
-      "partOfSpeech": "adjective",
-      "meaning": "Free from emotional or mental disturbance.",
-      "example": "She used the word \"tranquil\" carefully in her essay.",
-      "id": "762e80a3-08ff-4d36-b309-1ce8fd9785e3",
-      "date": "2026-08-10",
-      "fetchedAt": "2026-08-09T18:39:22.853Z",
-      "userSentence": "she finally felt tranquil",
-      "savedAt": "2026-08-09T18:40:31.122Z"
-    }
-  ]
+  "saved": []
 }
