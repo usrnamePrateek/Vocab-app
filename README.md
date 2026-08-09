@@ -14,4 +14,4 @@ npm run dev
 - App: http://localhost:5173
 - API: http://localhost:3001
 
-Definitions come from the [Free Dictionary API](https://dictionaryapi.dev/).
+Words are picked randomly from `data/dictionary.txt` (a common English word list) and definitions come from the [Free Dictionary API](https://dictionaryapi.dev/).

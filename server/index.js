@@ -3,7 +3,7 @@ import express from 'express'
 import fs from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { WORD_BANK } from './wordBank.js'
+import { loadDictionary, pickRandomWord } from './dictionary.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DATA_FILE = path.join(__dirname, '..', 'data', 'words.json')
@@ -90,13 +90,12 @@ function buildFallbackExample(word) {
 
 async function pickNewWord(exclude = []) {
   const excluded = new Set(exclude.map((w) => w.toLowerCase()))
-  const pool = WORD_BANK.filter((w) => !excluded.has(w.toLowerCase()))
-  const candidates = pool.length > 0 ? pool : WORD_BANK
 
-  for (let attempt = 0; attempt < 12; attempt++) {
-    const word = candidates[Math.floor(Math.random() * candidates.length)]
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const word = pickRandomWord([...excluded])
     const definition = await fetchDefinition(word)
     if (definition) return definition
+    excluded.add(word.toLowerCase())
   }
 
   throw new Error('Could not fetch a word definition. Try again.')
@@ -253,6 +252,8 @@ app.delete('/api/words/:id', async (req, res) => {
   }
 })
 
+const count = await loadDictionary()
 app.listen(PORT, () => {
   console.log(`Vocab Master API on http://localhost:${PORT}`)
+  console.log(`Loaded ${count} words from data/dictionary.txt`)
 })

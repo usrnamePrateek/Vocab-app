@@ -1,13 +1,13 @@
 {
   "currentWord": {
-    "id": "762e80a3-08ff-4d36-b309-1ce8fd9785e3",
-    "word": "tranquil",
-    "phonetic": "/ˈtɹæŋ.kwɪl/",
-    "partOfSpeech": "adjective",
-    "meaning": "Free from emotional or mental disturbance.",
-    "example": "She used the word \"tranquil\" carefully in her essay.",
+    "word": "shaped",
+    "phonetic": "/ʃeɪpt/",
+    "partOfSpeech": "verb",
+    "meaning": "To create or make.",
+    "example": "Earth was shapen by God for God's folk.",
+    "id": "98a22117-78ce-4e51-bca6-1394393206ec",
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-09T18:39:22.853Z"
+    "fetchedAt": "2026-08-09T18:45:16.505Z"
   },
   "saved": [
     {
