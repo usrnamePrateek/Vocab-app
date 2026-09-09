@@ -5,7 +5,7 @@ const STORE_ID = 'default'
 let clientPromise = null
 
 function getUri() {
-  const uri = process.env.MONGODB_URI
+  const uri = process.env.MONGODB_URI?.trim()
   if (!uri) {
     throw new Error(
       'Missing MONGODB_URI. Add it to .env locally and to Vercel Environment Variables.',
@@ -16,7 +16,10 @@ function getUri() {
 
 async function getClient() {
   if (!clientPromise) {
-    clientPromise = MongoClient.connect(getUri())
+    clientPromise = MongoClient.connect(getUri()).catch((err) => {
+      clientPromise = null
+      throw err
+    })
   }
   return clientPromise
 }
