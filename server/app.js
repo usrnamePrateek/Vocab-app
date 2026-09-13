@@ -36,8 +36,12 @@ function pickBestDefinition(entry) {
 async function fetchDefinition(word) {
   const res = await fetch(
     `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`,
+    { signal: AbortSignal.timeout(3000) }
   )
-  if (!res.ok) return null
+  if (!res.ok) {
+    if (res.status >= 500) throw new Error(`API returned status ${res.status}`);
+    return null;
+  }
 
   const data = await res.json()
   const entry = data[0]
@@ -66,15 +70,24 @@ function buildFallbackExample(word) {
 
 async function pickNewWord(exclude = []) {
   const excluded = new Set(exclude.map((w) => w.toLowerCase()))
+  let apiErrors = 0
 
-  for (let attempt = 0; attempt < 20; attempt++) {
+  for (let attempt = 0; attempt < 10; attempt++) {
     const word = pickRandomWord([...excluded])
-    const definition = await fetchDefinition(word)
-    if (definition) return definition
-    excluded.add(word.toLowerCase())
+    try {
+      const definition = await fetchDefinition(word)
+      if (definition) return definition
+      excluded.add(word.toLowerCase())
+    } catch (err) {
+      apiErrors++
+      if (apiErrors >= 2) {
+        console.error(`Dictionary API failed for "${word}":`, err.message)
+        throw new Error('Dictionary API is currently unavailable or too slow. Please try again later.')
+      }
+    }
   }
 
-  throw new Error('Could not fetch a word definition. Try again.')
+  throw new Error('Could not fetch a valid word definition after 10 attempts. Try again.')
 }
 
 function isValidWord(word) {
